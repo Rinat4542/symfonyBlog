@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Blog index
+{% endblock %}
+
+{% block body %}
+	<h1>Список статей</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Название</th>
+				<th>Описание</th>
+				<th>Действия</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for blog in blogs %}
+				<tr>
+					<td>{{ blog.id }}</td>
+					<td>{{ blog.title }}</td>
+					<td>{{ blog.body }}</td>
+					<td>
+						<a href="{{ path('app_blog_show', {'id': blog.id}) }}">Показать</a>
+						<a href="{{ path('app_blog_edit', {'id': blog.id}) }}">Изменить</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">Не найдено</td>
+				</tr>
+			{% endfor %}
+
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_blog_new') }}">
+		<button class='btn btn-outline-primary'>Создать новую</button>
+	</a>
+{% endblock %}

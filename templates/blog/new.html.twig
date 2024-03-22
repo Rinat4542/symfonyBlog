@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}New Blog
+{% endblock %}
+
+{% block body %}
+	<h1>Создать новую статью</h1>
+
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<button class="btn m-2 btn-success">Создать</button>
+	{{ form_end(form) }}
+
+	<a href="{{ path('app_blog_index') }}" class="m-2">
+		<button class="btn">Вернуться назад</button>
+	</a>
+{% endblock %}

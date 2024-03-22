@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Edit Blog
+{% endblock %}
+
+{% block body %}
+	<h1>Изменение статьи</h1>
+
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<button class="btn btn-warning">Изменить</button>
+	{{ form_end(form) }}
+
+
+	<a href="{{ path('app_blog_index') }}">Вернуться назад</a>
+{% endblock %}

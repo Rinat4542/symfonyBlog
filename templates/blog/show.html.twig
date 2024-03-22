@@ -1,0 +1,44 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Blog
+{% endblock %}
+
+{% block body %}
+	<h1>Статья</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ blog.id }}</td>
+			</tr>
+			<tr>
+				<th>Заголовок</th>
+				<td>{{ blog.title }}</td>
+			</tr>
+			<tr>
+				<th>Описание</th>
+				<td>{{ blog.body }}</td>
+			</tr>
+			{% if blog.category %}
+				<tr>
+					<th>Категория</th>
+					<td>{{ blog.category.name}}</td>
+				</tr>
+			{% endif %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_blog_index') }}" class='m-2'>
+		<button class="btn">Вернуться назад</button>
+	</a>
+
+	<a href="{{ path('app_blog_edit', {'id': blog.id}) }}" class='m-2'>
+		<button class="btn btn-warning">Изменить</button>
+	</a>
+
+	<form method="post" action="{{ path('app_blog_delete', {'id': blog.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" class='m-2'>
+		<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ blog.id) }}">
+		<button class="btn btn-danger">Удалить</button>
+	</form>
+{% endblock %}
